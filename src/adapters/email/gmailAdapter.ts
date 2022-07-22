@@ -21,13 +21,13 @@ export class GmailAdapter implements EmailAdapterInterface {
         }
       });
 
-      const baseUrl = 'http://someIp/confirmEmail';
+      const confirmEmailUrl = process.env.CONFIRM_EMAIL_URL;
       //TODO we can use handlebar and render an html to send it
       const message = {
         from: 'jabama-assignment@gmail.cpom', // Sender address
         to: params.email,
         subject: 'jabama-assignment otp' + new Date(), // Subject line
-        text: `Dear ${params.name} \nClick on this to confirm your email  ${baseUrl}?otp=${params.code}`, // Plain text body
+        text: `Dear ${params.name} \nClick on this to confirm your email  ${confirmEmailUrl}?otp=${params.code}`, // Plain text body
       };
       await transport.sendMail(message);
     } catch (e) {

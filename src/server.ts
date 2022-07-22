@@ -8,12 +8,13 @@ import {errorHandler} from "./middlewares/errorHandler";
 export const initDbConnection = async () => {
     try {
         const mongoUrl = process.env.MONGO_URL as string
+        console.log({mongoUrl})
 
-        await connect(mongoUrl);
+        await connect(mongoUrl, {useNewUrlParser: true});
         const db = connection;
 
         db.on('error',
-            (e) => {
+            (e:any) => {
                 console.error({title: 'db connection error...', error: e, data: {}})
                 throw e
             });
@@ -32,15 +33,12 @@ export const initServer = async () => {
 
 
     app.use(bodyParser.json());
+    const swaggerDocument = require('../public/swagger.json');
 
     app.use(
         '/docs',
         swaggerUi.serve,
-        swaggerUi.setup(undefined, {
-            swaggerOptions: {
-                url: '/swagger.json',
-            },
-        }),
+        swaggerUi.setup(swaggerDocument),
     );
 
     app.use(router);

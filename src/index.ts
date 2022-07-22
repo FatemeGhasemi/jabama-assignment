@@ -4,7 +4,7 @@ import * as path from 'path';
 if (process.env.NODE_ENV==='development'){
     // Loading dotenv should be above other imports
     dotenv.config({
-        path: path.resolve(__dirname, 'development.env'),
+        path: path.resolve(__dirname, '../development.env'),
     });
 }
 
