@@ -17,7 +17,7 @@ export class GmailAdapter implements EmailAdapterInterface {
         auth: {
           user: process.env.SMTP_GMAIL,
           // How to get gmail smtp password https://stackoverflow.com/a/45479968/4650625
-          pass: process.env.SMPTP_GMAIL_PASSWORD,
+          pass: process.env.SMTP_GMAIL_PASSWORD,
         }
       });
 
