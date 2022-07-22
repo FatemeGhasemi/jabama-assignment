@@ -2,14 +2,14 @@
 This project implemented for answering [Jabama challenge](./Jabama_Challenge.pdf)
 
 ### Used_Technologies
-Nodejs v16
-Typescript v4.5.2
-DB: Mongo v5, Redis v5
-DB ORM: Mongoose
-API protocol : REST
-Web application: Express v4.17.3
-Deployment: 
-API Documentation: Swagger
+* Nodejs v16
+* Typescript v4.5.2
+* DB: Mongo v5, Redis v5 
+* DB ORM: Mongoose
+* API protocol : REST
+* Web application: Express v4.17.3
+* Deployment: 
+* API Documentation: Swagger
 
 
 ### Installation and Run
