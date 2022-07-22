@@ -30,6 +30,7 @@ After every push I should do this steps for deploying
 * `cd /opt`
 * `git pull origin master`
 * `docker-compose -f docker-compose-production.yml down && docker-compose -f docker-compose-production.yml  up -d --build && docker image prune -a --force`
+*  http://94.101.187.225:3000/docs
 
 ### Should implement in the future
 * Validation for input data in all web services
