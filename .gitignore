@@ -3,3 +3,4 @@ node_modules
 public/swagger.json
 development.env
 production.env
+dist
