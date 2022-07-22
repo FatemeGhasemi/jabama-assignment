@@ -1,0 +1,30 @@
+version: '3.3'
+
+services:
+
+  jabama-redis:
+    image: bitnami/redis:5.0.9-debian-10-r142
+    container_name: notification-center-redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    restart: always
+    ports:
+      - "6490:6379"
+    volumes:
+      - jabama:/bitnami/redis/data
+
+  mongodb:
+    container_name: mongodb
+    image: bitnami/mongodb:latest
+    volumes:
+      - jabama-mongodb:/bitnami
+    ports:
+      - 27019:27017
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
+
+volumes:
+  jabama-mongodb:
+  jabama-redis:
+
