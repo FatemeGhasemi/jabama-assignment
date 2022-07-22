@@ -27,7 +27,7 @@ In Production server,  I run application with docker-compose, and for mongo I us
 for redis I used https://app.redislabs.com
 After every push I should do this steps for deploying
 * ssh to production server
-* `cd /opt`
+* `cd /opt/jabama-assignment`
 * `git pull origin master`
 * `docker-compose -f docker-compose-production.yml down && docker-compose -f docker-compose-production.yml  up -d --build && docker image prune -a --force`
 *  http://94.101.187.225:3000/docs
