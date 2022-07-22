@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import bodyParser from 'body-parser';
+import swaggerUi from 'swagger-ui-express';
 
 export const initDbConnection = async () => {
   try {
@@ -16,6 +17,15 @@ export const initServer = async () => {
 
   app.use(bodyParser.json());
 
+  app.use(
+      '/docs',
+      swaggerUi.serve,
+      swaggerUi.setup(undefined, {
+        swaggerOptions: {
+          url: '/swagger.json',
+        },
+      }),
+  );
 
   const port = process.env.PORT || 3040;
   app.listen(port, () => {
