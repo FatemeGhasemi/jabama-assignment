@@ -19,6 +19,41 @@ export type RegisterRequest = {
    */
   password: string;
 };
+export type LoginRequest = {
+
+  /**
+   * @example "fake@gmail.com"
+   */
+  email: string;
+
+  /**
+   * @example "123456"
+   */
+  password: string;
+};
+
+export type LoginResponse = {
+
+  /**
+   * @example "fake@gmail.com"
+   */
+  email: string;
+
+  /**
+   * @example "foo"
+   */
+  firstName: string;
+
+  /**
+   * @example "bar"
+   */
+  lastName: string;
+
+  /**
+   * @example true
+   */
+  isEmailVerified: boolean;
+};
 
 export type ResendVerificationEmailRequest = {
   /**

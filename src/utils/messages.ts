@@ -4,5 +4,7 @@ export const MESSAGES = {
   EMAIL_IS_REPETITIVE:'Email is repetitive',
   INVALID_EMAIL: 'Invalid email',
   INVALID_OTP: 'Invalid otp',
-  THIS_EMAIL_IS_ALREADY_VERIFIED:'This email is already verified'
+  INVALID_EMAIL_OR_PASSWORD: 'Invalid email or password',
+  THIS_EMAIL_IS_ALREADY_VERIFIED:'This email is already verified',
+  VERIFY_YOUR_EMAIL_BEFORE_LOGIN:'Verify your email before login'
 };

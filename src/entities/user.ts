@@ -5,7 +5,7 @@ export interface UserInterface {
     lastName: string;
     email: string;
     hashedPassword: string;
-    isEmailVerified ?: boolean
+    isEmailVerified : boolean
 }
 
 interface UserMongooseDocument extends UserInterface, Document {

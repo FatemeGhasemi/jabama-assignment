@@ -81,7 +81,10 @@ export class RegisterController {
       throw new Error(MESSAGES.INVALID_OTP)
     }
     const user = await findUserByEmail(email)
-    if (user?.isEmailVerified){
+    if (!user){
+      throw new Error(MESSAGES.INVALID_OTP)
+    }
+    if (user.isEmailVerified){
       throw new Error(MESSAGES.THIS_EMAIL_IS_ALREADY_VERIFIED)
     }
     await verifyUserEmail(email)
