@@ -10,7 +10,8 @@ export const errorHandler: ErrorRequestHandler = async (
   console.log('errorHandler ', {
     error,
   });
-  res.send({
+  //TODO Return appropriate status codes based on error
+  res.status(400).send({
     message: error.message,
     success: false,
   });

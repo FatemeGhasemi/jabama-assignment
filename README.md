@@ -22,9 +22,18 @@ This is deployed on my VPS and you can see the swagger here http://94.101.187.22
 * `npm run start:local`
 * Now you can browse [Swagger](http://localhost:3000/docs)
 
+### Production
+In Production server,  I run application with docker-compose, and for mongo I used https://cloud.mongodb.com, and
+for redis I used https://app.redislabs.com
+After every push I should do this steps for deploying
+* ssh to production server
+* `cd /opt`
+* `git pull origin master`
+* `docker-compose -f docker-compose-production.yml down && docker-compose -f docker-compose-production.yml  up -d --build && docker image prune -a --force`
 
 ### Should implement in the future
 * Validation for input data in all web services
+* Build docker images and push them in a registry ( for instance github packages)
 * Setup CI/CD
 * Generate html template for emails
 * Add unit test and integrations tests
