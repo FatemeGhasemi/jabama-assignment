@@ -21,9 +21,12 @@ export class RegisterController {
   ): Promise<RegisterResponse> {
     //TODO add validator to check input data
     const email = body.email.trim()
-    const isEmailExist =await isEmailExists(email)
-    if (isEmailExist){
+    const user =await findUserByEmail(email)
+    if (user && user.isEmailVerified){
       throw new Error(MESSAGES.EMAIL_IS_REPETITIVE)
+    }
+    if (user && !user.isEmailVerified){
+      throw new Error(MESSAGES.RESEND_VERIFICATION_EMAIL)
     }
     const hashedPassword = hashPassword(body.password)
     await createUser({
