@@ -33,6 +33,7 @@ After every push I should do this steps for deploying
 *  http://94.101.187.225:3000/docs
 
 ### Should implement in the future
+* Should add filter, pagination and authentication for /logs
 * Validation for input data in all web services
 * Build docker images and push them in a registry ( for instance github packages)
 * Setup CI/CD

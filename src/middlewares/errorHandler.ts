@@ -1,4 +1,5 @@
 import { ErrorRequestHandler } from 'express';
+import {sendResponse} from "../utils/responseHandler";
 
 export const errorHandler: ErrorRequestHandler = async (
   error,
@@ -10,9 +11,10 @@ export const errorHandler: ErrorRequestHandler = async (
   console.log('errorHandler ', {
     error,
   });
-  //TODO Return appropriate status codes based on error
-  res.status(400).send({
+  await sendResponse(res, {
     message: error.message,
     success: false,
-  });
+  },
+      //TODO Return appropriate status codes based on error
+      400)
 };

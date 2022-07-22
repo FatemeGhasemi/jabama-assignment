@@ -1,3 +1,5 @@
+import {LogInterface} from "../entities/log";
+
 export type RegisterRequest = {
   /**
    * @example "Fateme"
@@ -54,6 +56,8 @@ export type LoginResponse = {
    */
   isEmailVerified: boolean;
 };
+
+export type LogResponse =LogInterface []
 
 export type ResendVerificationEmailRequest = {
   /**

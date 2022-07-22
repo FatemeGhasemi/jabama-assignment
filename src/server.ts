@@ -4,6 +4,7 @@ import swaggerUi from 'swagger-ui-express';
 import {connect, connection} from 'mongoose'
 import {router} from "./routers";
 import {errorHandler} from "./middlewares/errorHandler";
+import {addLog} from "./middlewares/logMiddleware";
 
 export const initDbConnection = async () => {
     try {
@@ -41,6 +42,8 @@ export const initServer = async () => {
         swaggerUi.setup(swaggerDocument),
     );
 
+    // I put the logger after swagger to not save entity for loading swagger page
+    app.use(addLog)
     app.use(router);
     app.use(errorHandler);
 
