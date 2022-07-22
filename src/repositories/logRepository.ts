@@ -17,5 +17,5 @@ export const updateLogById = async (id:string, data: {
         {new: true})
 }
 export const getLogs = async ():Promise<LogInterface[]>=>{
-    return logModel.find()
+    return logModel.find().sort({_id:-1})
 }

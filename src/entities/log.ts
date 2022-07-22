@@ -20,6 +20,8 @@ const logSchema = new Schema({
     query: {type: Object},
     response: {type: Object},
     statusCode: {type: Number},
+}, {
+    timestamps: true
 })
 
 export const logModel = model<LogMongooseDocument>('logs', logSchema, "log")
