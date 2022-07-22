@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "prettify": "prettier  --write '**/*.ts*'"
   },
   "dependencies": {
   },
@@ -12,8 +15,11 @@
     "@types/node": "^16.11.10",
     "ts-node": "10.7.0",
     "ts-node-dev": "1.1.8",
-    "typescript": "4.5.2"
-  },
+    "typescript": "4.5.2",
+      "eslint": "8.10.0",
+      "eslint-config-prettier": "8.5.0",
+      "prettier": "2.5.1"
+    },
   "keywords": [],
   "author": "",
   "license": "ISC"
