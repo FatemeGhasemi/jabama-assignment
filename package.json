@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
+    "build": "tsc --project ./",
     "start:local": "npm run swagger && NODE_ENV=development ts-node-dev --project ./tsconfig.json --respawn ./src/index.ts",
+    "start:server:production": "cd dist &&  pm2-runtime src/index.j",
     "prettify": "prettier  --write '**/*.ts*'"
   },
   "dependencies": {

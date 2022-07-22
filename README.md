@@ -1,5 +1,6 @@
 ## Jabama-assignment
 This project implemented for answering [Jabama challenge](./Jabama_Challenge.pdf)
+This is deployed on my VPS and you can see the swagger here http://94.101.187.225:3000/docs
 
 ### Used_Technologies
 * Nodejs v16
