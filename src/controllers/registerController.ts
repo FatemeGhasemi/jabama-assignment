@@ -1,14 +1,15 @@
 import { Body, Get, Post, Query, Route, Tags } from 'tsoa';
 import {
-  ConfirmEmailResponse,
+  ConfirmEmailResponse, GeneralResponse,
   RegisterRequest,
-  RegisterResponse,
+  RegisterResponse, ResendVerificationEmailRequest,
 } from '../types/requestResponses';
 import { MESSAGES } from '../utils/messages';
-import {createUser, isEmailExists} from "../repositories/userRepository";
+import {createUser, findUserByEmail, isEmailExists, verifyUserEmail} from "../repositories/userRepository";
 import {hashPassword} from "../utils/hashUtils";
 import {getEmailAdapter} from "../adapters/adapterFactory";
 import {generateOtp} from "../services/otpService";
+import {getFromRedis, removeFromRedis} from "../utils/redisService";
 
 @Route('/register')
 @Tags('Register')
@@ -44,12 +45,47 @@ export class RegisterController {
     };
   }
 
+
+  @Post('/resendVerificationEmail')
+  public async resendVerificationEmail(
+    @Body()
+    body: ResendVerificationEmailRequest,
+  ): Promise<GeneralResponse> {
+    //TODO add validator to check input data
+    const email = body.email.trim()
+    const user =await findUserByEmail(email)
+    if (!user){
+      throw new Error(MESSAGES.INVALID_EMAIL)
+    }
+    if (user.isEmailVerified){
+      throw new Error(MESSAGES.THIS_EMAIL_IS_ALREADY_VERIFIED)
+    }
+    const code =await generateOtp(email)
+    await getEmailAdapter().sendRegistrationOtpEmail({
+      email,
+      name: `${user.firstName} ${user.lastName}`,
+      code
+    })
+    return {
+      success: true,
+      message: MESSAGES.EMAIL_HAS_BEEN_SENT,
+    };
+  }
+
   @Get('/confirmEmail')
   public async confirmEmail(
     @Query('otp') otp: string,
   ): Promise<ConfirmEmailResponse> {
-    // TODO Check otp in redis
-    //
+    const email =await getFromRedis(otp)
+    if (!email){
+      throw new Error(MESSAGES.INVALID_OTP)
+    }
+    const user = await findUserByEmail(email)
+    if (user?.isEmailVerified){
+      throw new Error(MESSAGES.THIS_EMAIL_IS_ALREADY_VERIFIED)
+    }
+    await verifyUserEmail(email)
+    await removeFromRedis(otp)
     return {
       success: true,
       message: MESSAGES.EMAIL_HAS_BEEN_CONFIRM,

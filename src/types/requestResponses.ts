@@ -20,7 +20,14 @@ export type RegisterRequest = {
   password: string;
 };
 
-export type RegisterResponse = {
+export type ResendVerificationEmailRequest = {
+  /**
+   * @example "fake@gmail.com"
+   */
+  email: string;
+};
+
+export type GeneralResponse = {
   /**
    * @example true
    */
@@ -31,15 +38,6 @@ export type RegisterResponse = {
    */
   message: string;
 };
+export type RegisterResponse = GeneralResponse
 
-export type ConfirmEmailResponse = {
-  /**
-   * @example true
-   */
-  success: boolean;
-
-  /**
-   * @example Email got verified
-   */
-  message: string;
-};
+export type ConfirmEmailResponse = GeneralResponse

@@ -9,3 +9,9 @@ export const isEmailExists = async (email:string) :Promise<boolean>=> {
     return Boolean(user)
 
 }
+export const findUserByEmail = async (email:string) :Promise<UserInterface | null>=> {
+    return userModel.findOne({email})
+}
+export const verifyUserEmail = async (email:string) :Promise<UserInterface | null>=> {
+    return userModel.findOneAndUpdate({email},{isEmailVerified: true}, {new:true})
+}
