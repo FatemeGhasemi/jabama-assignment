@@ -1,3 +1,9 @@
+import dotenv from 'dotenv';
+import * as path from 'path';
+
+dotenv.config({
+    path: path.resolve(__dirname, `${process.env.NODE_ENV || ''}.env`),
+});
 
 import { initDbConnection, initServer } from './server';
 
