@@ -2,6 +2,7 @@ import express, { Application } from 'express';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
 import {router} from "./routers";
+import {errorHandler} from "./middlewares/errorHandler";
 
 export const initDbConnection = async () => {
   try {
@@ -29,6 +30,8 @@ export const initServer = async () => {
   );
 
   app.use(router);
+  app.use(errorHandler);
+
 
   const port = process.env.PORT || 3040;
   app.listen(port, () => {
